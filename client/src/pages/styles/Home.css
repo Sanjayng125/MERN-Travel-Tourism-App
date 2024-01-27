@@ -1,0 +1,63 @@
+/* body{
+    background: red;
+} */
+.backaground_image{
+    background: url("../../assets/images/bg_jmg1.jpg") no-repeat;
+    background-size: cover;
+    /* background-position: 0px 0px; */
+    filter: brightness(0.7);
+    height: 340px;
+}
+.top-part{
+    position: absolute;
+    height: 340px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.offers_img{
+    background: url("../../assets/images/best_offers.jpg") no-repeat;
+    background-size: cover;
+    /* background-position: 0px -160px; */
+    width: 100%;
+    height: 250px;
+    filter: hue-rotate(188deg) brightness(0.8);
+}
+
+@media only screen and (min-width:550px) {
+    .backaground_image{
+        /* background-position: 0px -120px; */
+        background-size: cover;
+    }
+    .offers_img{
+        background-position: 0px -70px;
+        background-size: cover;
+    }
+}
+@media only screen and (min-width:800px) {
+    .backaground_image{
+        /* background-position: 0px -220px; */
+        background-size: cover;
+    }
+    .offers_img{
+        background-position: 0px -140px;
+        background-size: cover;
+    }
+}
+@media only screen and (min-width:950px) {
+    .offers_img{
+        background-position: 0px -170px;
+        background-size: cover;
+    }
+}
+@media only screen and (min-width:1080px) {
+    .backaground_image{
+        /* background-position: 0px -320px; */
+        background-size: cover;
+    }
+    .offers_img{
+        background-position: 0px -220px;
+        background-size: cover;
+    }
+}
