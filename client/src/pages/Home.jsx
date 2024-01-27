@@ -150,8 +150,14 @@ const Home = () => {
         {/* main page */}
         <div className="main p-6 flex flex-col gap-5">
           {loading && <h1 className="text-center text-2xl">Loading...</h1>}
+          {!loading &&
+            topPackages.length === 0 &&
+            latestPackages.length === 0 &&
+            offerPackages.length === 0 && (
+              <h1 className="text-center text-2xl">No Packages Yet!</h1>
+            )}
           {/* Top Rated */}
-          {!loading && topPackages && (
+          {!loading && topPackages.length > 0 && (
             <>
               <h1 className="text-2xl font-semibold">Top Packages</h1>
               <div className="flex flex-wrap gap-2 my-3">
@@ -163,7 +169,7 @@ const Home = () => {
           )}
           {/* Top Rated */}
           {/* latest */}
-          {!loading && latestPackages && (
+          {!loading && latestPackages.length > 0 && (
             <>
               <h1 className="text-2xl font-semibold">Latest Packages</h1>
               <div className="flex flex-wrap gap-2 my-3">
@@ -175,7 +181,7 @@ const Home = () => {
           )}
           {/* latest */}
           {/* offer */}
-          {!loading && offerPackages && (
+          {!loading && offerPackages.length > 0 && (
             <>
               <div className="offers_img"></div>
               <h1 className="text-2xl font-semibold">Best Offers</h1>
