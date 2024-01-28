@@ -13,12 +13,14 @@ const PackageCard = ({ packageData }) => {
           alt="Package Image"
         />
         <div className="w-full flex flex-col my-2">
-          <p className="font-semibold capitalize">{packageData.packageName}</p>
-          <p className="text-green-700 capitalize">
+          <p className="font-semibold text-lg capitalize w-[90%] xsm:w-[250px]">
+            {packageData.packageName}
+          </p>
+          <p className="text-green-700 text-lg capitalize">
             {packageData.packageDestination}
           </p>
           {(+packageData.packageDays > 0 || +packageData.packageNights > 0) && (
-            <p className="flex items-center gap-2">
+            <p className="flex text-lg items-center gap-2">
               <FaClock />
               {+packageData.packageDays > 0 &&
                 (+packageData.packageDays > 1
@@ -36,7 +38,7 @@ const PackageCard = ({ packageData }) => {
           {/* price & rating */}
           <div className="flex flex-wrap justify-between">
             {packageData.packageTotalRatings > 0 && (
-              <p className="flex">
+              <p className="flex items-center text-lg">
                 <Rating
                   value={packageData.packageRating}
                   size="medium"
