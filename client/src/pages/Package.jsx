@@ -367,6 +367,12 @@ const Package = () => {
               <p>{packageData?.packageMeals}</p>
             </div>
             {/* meals */}
+            {/* Transportation */}
+            <div className="w-full flex flex-col mt-2">
+              <h4 className="text-xl">Transportation:</h4>
+              <p>{packageData?.packageTransportation}</p>
+            </div>
+            {/* Transportation */}
             <hr />
             {/* give rating/review */}
             <div className="w-full flex flex-col mt-2 items-center">
