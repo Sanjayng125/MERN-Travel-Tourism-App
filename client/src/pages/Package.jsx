@@ -225,65 +225,65 @@ const Package = () => {
           </div>
           <div className="w-full flex flex-col p-5 max-w-4xl gap-2">
             <p className="text-2xl font-bold capitalize">
-              {packageData.packageName}
+              {packageData?.packageName}
             </p>
             {/* price */}
             <p className="flex gap-1 text-2xl font-semibold my-3">
-              {packageData.packageOffer ? (
+              {packageData?.packageOffer ? (
                 <>
                   <span className="line-through text-gray-700">
-                    ${packageData.packagePrice}
+                    ${packageData?.packagePrice}
                   </span>{" "}
-                  -<span>${packageData.packageDiscountPrice}</span>
+                  -<span>${packageData?.packageDiscountPrice}</span>
                   <span className="text-lg ml-2 bg-green-700 p-1 rounded text-white">
                     {Math.floor(
-                      ((+packageData.packagePrice -
-                        +packageData.packageDiscountPrice) /
-                        +packageData.packagePrice) *
+                      ((+packageData?.packagePrice -
+                        +packageData?.packageDiscountPrice) /
+                        +packageData?.packagePrice) *
                         100
                     )}
                     % Off
                   </span>
                 </>
               ) : (
-                <span>${packageData.packagePrice}</span>
+                <span>${packageData?.packagePrice}</span>
               )}
             </p>
             {/* price */}
             {/* destination */}
             <p className="text-green-700 flex items-center gap-1 text-lg capitalize">
               <FaMapMarkerAlt />
-              {packageData.packageDestination}
+              {packageData?.packageDestination}
             </p>
             {/* destination */}
             {/* days & nights */}
-            {(+packageData.packageDays > 0 ||
-              +packageData.packageNights > 0) && (
+            {(+packageData?.packageDays > 0 ||
+              +packageData?.packageNights > 0) && (
               <p className="flex items-center gap-2">
                 <FaClock />
-                {+packageData.packageDays > 0 &&
-                  (+packageData.packageDays > 1
-                    ? packageData.packageDays + " Days"
-                    : packageData.packageDays + " Day")}
-                {+packageData.packageDays > 0 &&
-                  +packageData.packageNights > 0 &&
+                {+packageData?.packageDays > 0 &&
+                  (+packageData?.packageDays > 1
+                    ? packageData?.packageDays + " Days"
+                    : packageData?.packageDays + " Day")}
+                {+packageData?.packageDays > 0 &&
+                  +packageData?.packageNights > 0 &&
                   " - "}
-                {+packageData.packageNights > 0 &&
-                  (+packageData.packageNights > 1
-                    ? packageData.packageNights + " Nights"
-                    : packageData.packageNights + " Night")}
+                {+packageData?.packageNights > 0 &&
+                  (+packageData?.packageNights > 1
+                    ? packageData?.packageNights + " Nights"
+                    : packageData?.packageNights + " Night")}
               </p>
             )}
             {/* days & nights */}
             {/* rating */}
-            {packageData.packageTotalRatings > 0 && (
+            {packageData?.packageTotalRatings > 0 && (
               <div className="flex">
                 <Rating
-                  value={packageData.packageRating || 0}
+                  value={packageData?.packageRating || 0}
                   readOnly
                   precision={0.1}
                 />
-                <p>({packageData.packageTotalRatings})</p>
+                <p>({packageData?.packageTotalRatings})</p>
               </div>
             )}
             {/* rating */}
@@ -291,16 +291,16 @@ const Package = () => {
             <div className="w-full flex flex-col mt-2">
               {/* <h4 className="text-xl">Description:</h4> */}
               <p className="break-all flex flex-col font-medium">
-                {packageData.packageDescription.length > 280 ? (
+                {packageData?.packageDescription.length > 280 ? (
                   <>
                     <span id="desc">
-                      {packageData.packageDescription.substring(0, 150)}...
+                      {packageData?.packageDescription.substring(0, 150)}...
                     </span>
                     <button
                       id="moreBtn"
                       onClick={() => {
                         document.getElementById("desc").innerText =
-                          packageData.packageDescription;
+                          packageData?.packageDescription;
                         document.getElementById("moreBtn").style.display =
                           "none";
                         document.getElementById("lessBtn").style.display =
@@ -314,9 +314,9 @@ const Package = () => {
                       id="lessBtn"
                       onClick={() => {
                         document.getElementById("desc").innerText =
-                          packageData.packageDescription;
+                          packageData?.packageDescription;
                         document.getElementById("desc").innerText =
-                          packageData.packageDescription.substring(0, 150) +
+                          packageData?.packageDescription.substring(0, 150) +
                           "...";
                         document.getElementById("lessBtn").style.display =
                           "none";
@@ -329,7 +329,7 @@ const Package = () => {
                     </button>
                   </>
                 ) : (
-                  <>{packageData.packageDescription}</>
+                  <>{packageData?.packageDescription}</>
                 )}
               </p>
             </div>
@@ -352,15 +352,21 @@ const Package = () => {
             {/* Accommodation */}
             <div className="w-full flex flex-col mt-2">
               <h4 className="text-xl">Accommodation:</h4>
-              <p>{packageData.packageAccommodation}</p>
+              <p>{packageData?.packageAccommodation}</p>
             </div>
             {/* Accommodation */}
             {/* Activities */}
             <div className="w-full flex flex-col mt-2">
               <h4 className="text-xl">Activities:</h4>
-              <p>{packageData.packageActivities}</p>
+              <p>{packageData?.packageActivities}</p>
             </div>
             {/* Activities */}
+            {/* meals */}
+            <div className="w-full flex flex-col mt-2">
+              <h4 className="text-xl">Meals:</h4>
+              <p>{packageData?.packageMeals}</p>
+            </div>
+            {/* meals */}
             <hr />
             {/* give rating/review */}
             <div className="w-full flex flex-col mt-2 items-center">
