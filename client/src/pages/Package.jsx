@@ -424,6 +424,16 @@ const Package = () => {
                   </div>
                 </>
               )}
+              {(!currentUser || currentUser === null) && (
+                <button
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                  className="p-2 rounded text-white bg-green-700"
+                >
+                  Rate Package
+                </button>
+              )}
             </div>
             {/* give rating/review */}
           </div>
