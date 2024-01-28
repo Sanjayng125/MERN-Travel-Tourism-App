@@ -55,7 +55,7 @@ const Profile = () => {
     try {
       dispatch(updateUserStart());
       const storage = getStorage(app);
-      const photoname = new Date().getTime() + photo.name;
+      const photoname = new Date().getTime() + photo.name.replace(/\s/g, "");
       const storageRef = ref(storage, `profile-photos/${photoname}`); //profile-photos - folder name in firebase
       const uploadTask = uploadBytesResumable(storageRef, photo);
 
