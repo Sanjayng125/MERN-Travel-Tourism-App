@@ -333,8 +333,15 @@ const Booking = () => {
                 </span>
               </p>
               <div className="my-2 max-w-[300px] gap-1">
-                <p className="font-semibold">
-                  Payment:{!instance && "Loading..."}
+                <p
+                  className={`font-semibold ${
+                    instance && "text-red-700 text-sm"
+                  }`}
+                >
+                  Payment:
+                  {!instance
+                    ? "Loading..."
+                    : "Don't use your original card details!(This is not the production build)"}
                 </p>
                 {clientToken && (
                   <>
