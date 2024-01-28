@@ -100,8 +100,10 @@ export const getPackages = async (req, res) => {
     const order = req.query.order || "desc";
 
     const packages = await Package.find({
-      packageName: { $regex: searchTerm, $options: "i" },
-      packageDestination: { $regex: searchTerm, $options: "i" },
+      $or: [
+        { packageName: { $regex: searchTerm, $options: "i" } },
+        { packageDestination: { $regex: searchTerm, $options: "i" } },
+      ],
       packageOffer: offer,
     })
       .sort({ [sort]: order })
