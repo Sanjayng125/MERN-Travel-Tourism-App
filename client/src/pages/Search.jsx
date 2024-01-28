@@ -40,7 +40,7 @@ const Search = () => {
         const data = await res.json();
         setLoading(false);
         setAllPackages(data?.packages);
-        if (data.length > 8) {
+        if (data?.packages?.length > 8) {
           setShowMoreBtn(true);
         } else {
           setShowMoreBtn(false);
@@ -93,12 +93,12 @@ const Search = () => {
     const urlParams = new URLSearchParams(location.search);
     urlParams.set("startIndex", startIndex);
     const searchQuery = urlParams.toString();
-    const res = await fetch(`/api/package/get-package?${searchQuery}`);
+    const res = await fetch(`/api/package/get-packages?${searchQuery}`);
     const data = await res.json();
-    if (data.length < 9) {
+    if (data?.packages?.length < 9) {
       setShowMoreBtn(false);
     }
-    setAllPackages([...allPackages, ...data]);
+    setAllPackages([...allPackages, ...data?.packages]);
   };
 
   return (
@@ -154,30 +154,30 @@ const Search = () => {
       <div className="flex-1">
         <h1 className="text-xl font-semibold border-b p-3 text-slate-700 mt-5">
           Package Results:
-          <div className="w-full p-5 flex flex-wrap gap-2">
-            {!loading && allPackages.length === 0 && (
-              <p className="text-xl text-slate-700">No Packages Found!</p>
-            )}
-            {loading && (
-              <p className="text-xl text-slate-700 text-center w-full">
-                Loading...
-              </p>
-            )}
-            {!loading &&
-              allPackages &&
-              allPackages.map((packageData, i) => (
-                <PackageCard key={i} packageData={packageData} />
-              ))}
-            {showMoreBtn && (
-              <button
-                onClick={onShowMoreSClick}
-                className="text-sm text-green-700 hover:underline p-7 text-center w-full"
-              >
-                Show More
-              </button>
-            )}
-          </div>
         </h1>
+        <div className="w-full p-5 flex flex-wrap gap-2">
+          {!loading && allPackages.length === 0 && (
+            <p className="text-xl text-slate-700">No Packages Found!</p>
+          )}
+          {loading && (
+            <p className="text-xl text-slate-700 text-center w-full">
+              Loading...
+            </p>
+          )}
+          {!loading &&
+            allPackages &&
+            allPackages.map((packageData, i) => (
+              <PackageCard key={i} packageData={packageData} />
+            ))}
+        </div>
+        {showMoreBtn && (
+          <button
+            onClick={onShowMoreSClick}
+            className="text-sm bg-green-700 text-white hover:underline p-2 m-3 rounded text-center w-max"
+          >
+            Show More
+          </button>
+        )}
       </div>
     </div>
   );
