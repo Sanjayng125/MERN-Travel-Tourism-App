@@ -170,3 +170,16 @@ export const getAllUsers = async (req, res) => {
     console.log(error);
   }
 };
+
+//delete user admin
+export const deleteUserAccountAdmin = async (req, res, next) => {
+  try {
+    await User.findByIdAndDelete(req?.params?.id);
+    res.status(200).send({
+      success: true,
+      message: "User account has been deleted!",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

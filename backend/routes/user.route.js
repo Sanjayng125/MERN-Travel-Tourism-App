@@ -1,6 +1,7 @@
 import express from "express";
 import {
   deleteUserAccount,
+  deleteUserAccountAdmin,
   getAllUsers,
   updateProfilePhoto,
   updateUser,
@@ -34,5 +35,13 @@ router.delete("/delete/:id", requireSignIn, deleteUserAccount);
 
 //get all users
 router.get("/getAllUsers", requireSignIn, isAdmin, getAllUsers);
+
+//admin delete user accounts
+router.delete(
+  "/delete-user/:id",
+  requireSignIn,
+  isAdmin,
+  deleteUserAccountAdmin
+);
 
 export default router;

@@ -1,17 +1,21 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { FaTrash, FaPen } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 
 const AllUsers = () => {
   const [allUser, setAllUsers] = useState([]);
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const getUsers = async () => {
     try {
+      setLoading(true);
       const res = await axios.get(`/api/user/getAllUsers?searchTerm=${search}`);
       if (res?.data) {
+        setLoading(false);
         setAllUsers(res?.data);
       }
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -21,11 +25,36 @@ const AllUsers = () => {
     if (search) getUsers();
   }, [search]);
 
+  const handleUserDelete = async (userId) => {
+    const CONFIRM = confirm(
+      "Are you sure ? the account will be permenantly deleted!"
+    );
+    if (CONFIRM) {
+      setLoading(true);
+      try {
+        const res = await fetch(`/api/user/delete-user/${userId}`, {
+          method: "DELETE",
+        });
+        const data = await res.json();
+        if (data?.success === false) {
+          setLoading(false);
+          alert("Something went wrong!");
+          return;
+        }
+        setLoading(false);
+        alert(data?.message);
+        getUsers();
+      } catch (error) {}
+    }
+  };
+
   return (
     <>
       <div className="w-full flex justify-center">
         <div className="w-full shadow-lg rounded-lg p-2">
-          <h1 className="text-2xl text-center">All Users</h1>
+          <h1 className="text-2xl text-center">
+            {loading ? "Loading..." : "All Users"}
+          </h1>
           <div>
             <input
               type="text"
@@ -59,10 +88,13 @@ const AllUsers = () => {
                     {user.phone}
                   </h5>
                   <div className="flex flex-col flex-1 justify-center items-center p-[5px]">
-                    <button className="p-2 text-blue-500 hover:cursor-pointer hover:scale-125">
-                      <FaPen />
-                    </button>
-                    <button className="p-2 text-red-500 hover:cursor-pointer hover:scale-125">
+                    <button
+                      disabled={loading}
+                      className="p-2 text-red-500 hover:cursor-pointer hover:scale-125 disabled:opacity-80"
+                      onClick={() => {
+                        handleUserDelete(user._id);
+                      }}
+                    >
                       <FaTrash />
                     </button>
                   </div>
