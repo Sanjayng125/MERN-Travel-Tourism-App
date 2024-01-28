@@ -46,14 +46,14 @@ const PackageCard = ({ packageData }) => {
                 ({packageData.packageTotalRatings})
               </p>
             )}
-            {packageData.packageDiscountPrice ? (
+            {packageData.offer && packageData.packageDiscountPrice ? (
               <p className="flex gap-1">
                 <span className="line-through text-gray-700">
-                  ${packageData.packageDiscountPrice}
+                  ${packageData.packagePrice}
                 </span>
                 -
                 <span className="font-medium text-green-700">
-                  ${packageData.packagePrice}
+                  ${packageData.packageDiscountPrice}
                 </span>
               </p>
             ) : (
