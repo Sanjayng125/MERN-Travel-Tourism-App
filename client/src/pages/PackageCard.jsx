@@ -8,7 +8,7 @@ const PackageCard = ({ packageData }) => {
     <Link to={`/package/${packageData._id}`} className="w-max">
       <div className="bg-white border flex flex-col items-center p-3 rounded shadow-md overflow-hidden">
         <img
-          className="w-[90%] h-[170px] xsm:w-[250px] xsm:h-[190px] rounded border hover:scale-110  transition-all duration-300"
+          className="w-[85%] h-[170px] xsm:w-[250px] xsm:h-[190px] rounded border hover:scale-110  transition-all duration-300"
           src={packageData.packageImages[0]}
           alt="Package Image"
         />
