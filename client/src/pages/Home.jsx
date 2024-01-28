@@ -148,7 +148,7 @@ const Home = () => {
           </div>
         </div>
         {/* main page */}
-        <div className="main p-6 flex flex-col xsm:items-start items-center gap-5">
+        <div className="main p-6 flex flex-col gap-5">
           {loading && <h1 className="text-center text-2xl">Loading...</h1>}
           {!loading &&
             topPackages.length === 0 &&
