@@ -229,7 +229,7 @@ const AdminDashboard = () => {
                   Edit Profile
                 </button>
               </div>
-              <div className="w-full shadow-2xl rounded-lg p-3">
+              <div className="w-full shadow-2xl rounded-lg p-3 break-all">
                 <p className="text-3xl font-semibold m-1">
                   Hi {currentUser.username} !
                 </p>
