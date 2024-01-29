@@ -6,16 +6,22 @@ const AllUsers = () => {
   const [allUser, setAllUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const getUsers = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`/api/user/getAllUsers?searchTerm=${search}`);
-      if (res?.data) {
+      const res = await fetch(`/api/user/getAllUsers?searchTerm=${search}`);
+      const data = await res.json();
+
+      if (data && data?.success === false) {
         setLoading(false);
-        setAllUsers(res?.data);
+        setError(data?.message);
+      } else {
+        setLoading(false);
+        setAllUsers(data);
+        setError(false);
       }
-      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -55,6 +61,7 @@ const AllUsers = () => {
           <h1 className="text-2xl text-center">
             {loading ? "Loading..." : "All Users"}
           </h1>
+          {error && <h1 className="text-center text-2xl">{error}</h1>}
           <div>
             <input
               type="text"

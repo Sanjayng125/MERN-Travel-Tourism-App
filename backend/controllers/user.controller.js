@@ -165,7 +165,14 @@ export const getAllUsers = async (req, res) => {
         { phone: { $regex: searchTerm, $options: "i" } },
       ],
     });
-    res.send(users);
+    if (users && users.length > 0) {
+      res.send(users);
+    } else {
+      res.status(200).send({
+        success: false,
+        message: "No Users Yet!",
+      });
+    }
   } catch (error) {
     console.log(error);
   }
