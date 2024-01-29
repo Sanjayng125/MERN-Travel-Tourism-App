@@ -106,6 +106,7 @@ const Package = () => {
       return;
     }
     try {
+      setLoading(true);
       const res = await fetch("/api/rating/give-rating", {
         method: "POST",
         headers: {
@@ -115,11 +116,13 @@ const Package = () => {
       });
       const data = await res.json();
       if (data?.success) {
+        setLoading(false);
         alert(data?.message);
         getPackageData();
         getRatings();
         checkRatingGiven();
       } else {
+        setLoading(false);
         alert(data?.message || "Something went wrong!");
       }
     } catch (error) {
@@ -411,13 +414,18 @@ const Package = () => {
                     ></textarea>
                     <button
                       disabled={
-                        ratingsData.rating === 0 && ratingsData.review === ""
+                        (ratingsData.rating === 0 &&
+                          ratingsData.review === "") ||
+                        loading
                       }
                       type="button"
-                      onClick={() => giveRating()}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        giveRating();
+                      }}
                       className="w-full p-2 bg-green-700 text-white rounded disabled:opacity-80 hover:opacity-95"
                     >
-                      Submit
+                      {loading ? "Loading..." : "Submit"}
                     </button>
                     <hr />
                   </div>

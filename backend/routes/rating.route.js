@@ -15,7 +15,7 @@ router.post("/give-rating", requireSignIn, giveRating);
 //get average rating of package
 router.get("/average-rating/:id", averageRating);
 
-//rating given by user of to a package
+//check if rating given by user to a package
 router.get("/rating-given/:userId/:packageId", ratingGiven);
 
 //get all ratings by package id
