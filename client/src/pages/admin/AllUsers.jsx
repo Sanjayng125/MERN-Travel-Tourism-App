@@ -71,6 +71,9 @@ const AllUsers = () => {
                 setSearch(e.target.value);
               }}
             />
+            <h2 className="text-xl font-semibold mb-2 ml-2">
+              Total Users: {allUser.length ? allUser?.length : "Loading..."}
+            </h2>
           </div>
           {allUser ? (
             allUser.map((user, i) => {
