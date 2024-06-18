@@ -21,13 +21,13 @@ const About = () => {
               Git-Hub <FaExternalLinkAlt />
             </a>
           </li>
-          <li className="hover:underline hover:text-pink-600 cursor-pointer">
+          <li className="hover:underline hover:text-blue-600 cursor-pointer">
             <a
               className="flex items-center gap-2"
-              href="https://www.instagram.com/sanjay_ng_125/"
+              href="https://linkedin.com/in/sanjay-ng-41b64922a"
               target="_blank"
             >
-              Instagram <FaExternalLinkAlt />
+              LinkedIn <FaExternalLinkAlt />
             </a>
           </li>
         </ul>
