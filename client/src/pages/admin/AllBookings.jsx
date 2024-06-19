@@ -74,7 +74,7 @@ const AllBookings = () => {
               setSearchTerm(e.target.value);
             }}
           />
-          <Chart data={currentBookings} />
+          {currentBookings.length > 0 && <Chart data={currentBookings} />}
         </div>
         {!loading &&
           currentBookings &&
