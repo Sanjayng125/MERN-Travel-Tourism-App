@@ -29,17 +29,19 @@ app.use("/api/package", packageRoute);
 app.use("/api/rating", ratingRoute);
 app.use("/api/booking", bookingRoute);
 
-// //rest api
-app.use("/", (req, res) => {
-  res.send("Welcome to travel and tourism app");
-});
+if (process.env.NODE_ENV === "production") {
+  //static files
+  app.use(express.static(path.join(__dirname, "/client/dist")));
 
-//static files
-// app.use(express.static(path.join(__dirname, "/client/dist")));
-
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
-// });
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+  });
+} else {
+  // //rest api
+  app.use("/", (req, res) => {
+    res.send("Welcome to travel and tourism app");
+  });
+}
 
 //port
 app.listen(8000, () => {
