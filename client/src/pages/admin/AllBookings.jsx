@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Chart from "../components/Chart";
 
 const AllBookings = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -18,6 +19,7 @@ const AllBookings = () => {
       );
       const data = await res.json();
       if (data?.success) {
+        console.log(data.bookings);
         setCurrentBookings(data?.bookings);
         setLoading(false);
         setError(false);
@@ -59,10 +61,10 @@ const AllBookings = () => {
 
   return (
     <div className="w-full flex justify-center">
-      <div className="w-[95%] shadow-xl rounded-lg p-3 flex flex-col gap-2">
+      <div className="w-[95%] shadow-xl rounded-lg p-3 px-1 flex flex-col gap-2">
         {loading && <h1 className="text-center text-2xl">Loading...</h1>}
         {error && <h1 className="text-center text-2xl">{error}</h1>}
-        <div className="w-full border-b-4">
+        <div className="w-full border-b-4 p-3">
           <input
             className="border rounded-lg p-2 mb-2"
             type="text"
@@ -72,6 +74,7 @@ const AllBookings = () => {
               setSearchTerm(e.target.value);
             }}
           />
+          <Chart data={currentBookings} />
         </div>
         {!loading &&
           currentBookings &&

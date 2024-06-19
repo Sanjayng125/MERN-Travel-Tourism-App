@@ -78,7 +78,9 @@ export const loginController = async (req, res) => {
       });
     }
 
-    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
     const { password: pass, ...rest } = validUser._doc; //deselcting password to send user(this will send all data accept password)
     res.cookie("access_token", token, { httpOnly: true }).status(200).send({
       success: true,

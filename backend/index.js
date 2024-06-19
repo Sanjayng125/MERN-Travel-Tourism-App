@@ -30,16 +30,16 @@ app.use("/api/rating", ratingRoute);
 app.use("/api/booking", bookingRoute);
 
 // //rest api
-// app.use("/", (req, res) => {
-//   res.send("Welcome to travel and tourism app");
-// });
+app.use("/", (req, res) => {
+  res.send("Welcome to travel and tourism app");
+});
 
 //static files
-app.use(express.static(path.join(__dirname, "/client/dist")));
+// app.use(express.static(path.join(__dirname, "/client/dist")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+// });
 
 //port
 app.listen(8000, () => {

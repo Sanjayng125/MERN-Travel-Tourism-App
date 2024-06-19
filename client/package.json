@@ -26,8 +26,10 @@
     "react-router": "^6.21.1",
     "react-router-dom": "^6.21.1",
     "react-toastify": "^10.0.4",
+    "recharts": "^2.12.7",
     "redux-persist": "^6.0.0",
-    "swiper": "^11.0.5"
+    "swiper": "^11.0.5",
+    "timeago.js": "^4.0.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

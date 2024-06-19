@@ -1,4 +1,3 @@
-import React from "react";
 import aboutImg from "../assets/images/about_img.png";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
