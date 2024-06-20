@@ -35,7 +35,7 @@ app.use("/api/package", packageRoute);
 app.use("/api/rating", ratingRoute);
 app.use("/api/booking", bookingRoute);
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV_CUSTOM === "production") {
   //static files
   app.use(express.static(path.join(__dirname, "/client/dist")));
 
