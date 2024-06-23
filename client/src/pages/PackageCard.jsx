@@ -13,7 +13,7 @@ const PackageCard = ({ packageData }) => {
           alt="Package Image"
         />
         <div className="w-full flex flex-col my-2">
-          <p className="font-semibold text-lg capitalize w-[90%] xsm:w-[250px]">
+          <p className="font-semibold text-lg capitalize w-[90%] xsm:w-[250px] truncate">
             {packageData.packageName}
           </p>
           <p className="text-green-700 text-lg capitalize">
