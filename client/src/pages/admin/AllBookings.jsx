@@ -19,7 +19,6 @@ const AllBookings = () => {
       );
       const data = await res.json();
       if (data?.success) {
-        console.log(data.bookings);
         setCurrentBookings(data?.bookings);
         setLoading(false);
         setError(false);

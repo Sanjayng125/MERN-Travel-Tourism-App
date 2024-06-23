@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./styles/Home.css";
 import { FaCalendar, FaSearch, FaStar } from "react-icons/fa";
 import { FaRankingStar } from "react-icons/fa6";
@@ -14,7 +14,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
 
-  const getTopPackages = async () => {
+  const getTopPackages = useCallback(async () => {
     try {
       setLoading(true);
       const res = await fetch(
@@ -31,9 +31,9 @@ const Home = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [topPackages]);
 
-  const getLatestPackages = async () => {
+  const getLatestPackages = useCallback(async () => {
     try {
       setLoading(true);
       const res = await fetch(
@@ -50,9 +50,9 @@ const Home = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [latestPackages]);
 
-  const getOfferPackages = async () => {
+  const getOfferPackages = useCallback(async () => {
     try {
       setLoading(true);
       const res = await fetch(
@@ -69,7 +69,7 @@ const Home = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [offerPackages]);
 
   useEffect(() => {
     getTopPackages();
@@ -160,7 +160,7 @@ const Home = () => {
           {!loading && topPackages.length > 0 && (
             <>
               <h1 className="text-2xl font-semibold">Top Packages</h1>
-              <div className="flex flex-wrap gap-2 my-3">
+              <div className="grid 2xl:grid-cols-5 xlplus:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-2 my-3">
                 {topPackages.map((packageData, i) => {
                   return <PackageCard key={i} packageData={packageData} />;
                 })}
@@ -172,7 +172,7 @@ const Home = () => {
           {!loading && latestPackages.length > 0 && (
             <>
               <h1 className="text-2xl font-semibold">Latest Packages</h1>
-              <div className="flex flex-wrap gap-2 my-3">
+              <div className="grid 2xl:grid-cols-5 xlplus:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-2 my-3">
                 {latestPackages.map((packageData, i) => {
                   return <PackageCard key={i} packageData={packageData} />;
                 })}
@@ -185,7 +185,7 @@ const Home = () => {
             <>
               <div className="offers_img"></div>
               <h1 className="text-2xl font-semibold">Best Offers</h1>
-              <div className="flex flex-wrap gap-2 my-3">
+              <div className="grid 2xl:grid-cols-5 xlplus:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-2 my-3">
                 {offerPackages.map((packageData, i) => {
                   return <PackageCard key={i} packageData={packageData} />;
                 })}

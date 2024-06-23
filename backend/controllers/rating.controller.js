@@ -109,7 +109,9 @@ export const getAllRatings = async (req, res) => {
   try {
     const ratings = await RatingReview.find({
       packageId: req?.params?.id,
-    }).limit(req?.params?.limit);
+    })
+      .limit(req?.params?.limit)
+      .sort({ createdAt: -1 });
     if (ratings) {
       return res.send(ratings);
     } else {

@@ -6,6 +6,7 @@ const AllPackages = () => {
   const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
+  const [showMoreBtn, setShowMoreBtn] = useState(false);
 
   const getPackages = async () => {
     setPackages([]);
@@ -28,9 +29,33 @@ const AllPackages = () => {
         setLoading(false);
         alert(data?.message || "Something went wrong!");
       }
+      if (data?.packages?.length > 8) {
+        setShowMoreBtn(true);
+      } else {
+        setShowMoreBtn(false);
+      }
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const onShowMoreSClick = async () => {
+    const numberOfPackages = packages.length;
+    const startIndex = numberOfPackages;
+    let url =
+      filter === "offer" //offer
+        ? `/api/package/get-packages?searchTerm=${search}&offer=true&startIndex=${startIndex}`
+        : filter === "latest" //latest
+        ? `/api/package/get-packages?searchTerm=${search}&sort=createdAt&startIndex=${startIndex}`
+        : filter === "top" //top rated
+        ? `/api/package/get-packages?searchTerm=${search}&sort=packageRating&startIndex=${startIndex}`
+        : `/api/package/get-packages?searchTerm=${search}&startIndex=${startIndex}`; //all
+    const res = await fetch(url);
+    const data = await res.json();
+    if (data?.packages?.length < 9) {
+      setShowMoreBtn(false);
+    }
+    setPackages([...packages, ...data?.packages]);
   };
 
   useEffect(() => {
@@ -161,6 +186,14 @@ const AllPackages = () => {
           })
         ) : (
           <h1 className="text-center text-2xl">No Packages Yet!</h1>
+        )}
+        {showMoreBtn && (
+          <button
+            onClick={onShowMoreSClick}
+            className="text-sm bg-green-700 text-white hover:underline p-2 m-3 rounded text-center w-max"
+          >
+            Show More
+          </button>
         )}
       </div>
     </>

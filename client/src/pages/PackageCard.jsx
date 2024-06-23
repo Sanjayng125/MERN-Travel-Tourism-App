@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 
 const PackageCard = ({ packageData }) => {
   return (
-    <Link to={`/package/${packageData._id}`} className="w-max">
-      <div className="bg-white border flex flex-col items-center p-3 rounded shadow-md overflow-hidden">
+    <Link to={`/package/${packageData._id}`} className="w-full">
+      <div className="w-full bg-white border flex flex-col items-center p-3 rounded shadow-md overflow-hidden">
         <img
-          className="w-[300px] h-[190px] rounded border hover:scale-110  transition-all duration-300"
+          className="w-full h-[220px] rounded border hover:scale-110  transition-all duration-300"
           src={packageData.packageImages[0]}
           alt="Package Image"
         />

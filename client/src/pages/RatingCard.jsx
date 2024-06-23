@@ -10,7 +10,7 @@ const RatingCard = ({ packageRatings }) => {
           return (
             <div
               key={i}
-              className="main relative w-max min-w-[280px] max-w-[280px] rounded-lg border p-3 gap-2 flex flex-col"
+              className="main relative w-full rounded-lg border p-3 gap-2 flex flex-col"
               id="main"
             >
               <div className="flex gap-2 items-center">
@@ -68,7 +68,7 @@ const RatingCard = ({ packageRatings }) => {
                 >
                   <div
                     key={i}
-                    className="relative w-max min-w-[280px] max-w-[280px] rounded-lg border p-3 gap-2 flex flex-col"
+                    className="relative w-full rounded-lg border p-3 gap-2 flex flex-col"
                   >
                     <div className="flex gap-2 items-center">
                       <img
@@ -85,9 +85,9 @@ const RatingCard = ({ packageRatings }) => {
                       precision={0.1}
                     />
                     {/* review */}
-                    <p className="break-all">
+                    <p className="break-words">
                       <span
-                        className="break-all"
+                        className="break-words"
                         id={rating.review.length > 90 ? "review-text" : "none"}
                       >
                         {rating.review}

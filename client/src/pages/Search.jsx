@@ -155,7 +155,7 @@ const Search = () => {
         <h1 className="text-xl font-semibold border-b p-3 text-slate-700 mt-5">
           Package Results:
         </h1>
-        <div className="w-full p-5 flex flex-wrap gap-2">
+        <div className="w-full p-5 grid 2xl:grid-cols-4 xlplus:grid-cols-3 lg:grid-cols-2 gap-2">
           {!loading && allPackages.length === 0 && (
             <p className="text-xl text-slate-700">No Packages Found!</p>
           )}

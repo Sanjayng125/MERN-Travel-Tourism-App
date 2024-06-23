@@ -226,7 +226,7 @@ const Package = () => {
               }}
             />
           </div>
-          <div className="w-full flex flex-col p-5 max-w-4xl gap-2">
+          <div className="w-full flex flex-col p-5 gap-2">
             <p className="text-2xl font-bold capitalize">
               {packageData?.packageName}
             </p>
@@ -429,14 +429,14 @@ const Package = () => {
                     </button>
                     <hr />
                   </div>
-                  <div className="mt-3 w-full flex flex-wrap justify-center gap-2 sm:justify-normal">
+                  <div className="mt-3 w-full gap-2 grid 2xl:grid-cols-6 xl:grid-cols-5 xlplus:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
                     <RatingCard packageRatings={packageRatings} />
                     {packageData.packageTotalRatings > 4 && (
                       <button
                         onClick={() =>
                           navigate(`/package/ratings/${params?.id}`)
                         }
-                        className="flex items-center gap-2 p-2 rounded border h-max hover:bg-slate-500 hover:text-white"
+                        className="flex items-center justify-center text-lg gap-2 p-2 rounded border hover:bg-slate-500 hover:text-white"
                       >
                         View All <FaArrowRight />
                       </button>
