@@ -82,15 +82,21 @@ export const loginController = async (req, res) => {
       { id: validUser._id },
       process.env.JWT_SECRET,
       {
-        expiresIn: "7d",
+        expiresIn: "4d",
       }
     );
     const { password: pass, ...rest } = validUser._doc; //deselcting password to send user(this will send all data accept password)
-    res.cookie("access_token", token, { httpOnly: true }).status(200).send({
-      success: true,
-      message: "Login Success",
-      user: rest,
-    });
+    res
+      .cookie("X_TTMS_access_token", token, {
+        httpOnly: true,
+        maxAge: 4 * 24 * 60 * 60 * 1000,
+      })
+      .status(200)
+      .send({
+        success: true,
+        message: "Login Success",
+        user: rest,
+      });
   } catch (error) {
     console.log(error);
   }
@@ -98,7 +104,7 @@ export const loginController = async (req, res) => {
 
 export const logOutController = (req, res) => {
   try {
-    res.clearCookie("access_token");
+    res.clearCookie("X_TTMS_access_token");
     res.status(200).send({
       success: true,
       message: "Logged out successfully",

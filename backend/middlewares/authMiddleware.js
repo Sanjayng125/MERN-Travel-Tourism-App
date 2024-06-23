@@ -2,8 +2,8 @@ import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
 
 export const requireSignIn = async (req, res, next) => {
-  if (req?.cookies?.access_token) {
-    const token = await req.cookies.access_token;
+  if (req?.cookies?.X_TTMS_access_token) {
+    const token = await req.cookies.X_TTMS_access_token;
     if (!token)
       return res.status(401).send({
         success: false,
